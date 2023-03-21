@@ -5,5 +5,40 @@
   <body>
     <h1>Cam page</h1>
     <img src="{{ url_for('video_feed') }}">
+
+    <div class='container'>
+        <!-- <h3>Test</h3> -->
+            <form>
+                <a href=# id=pullups><button class='btn btn-default'>Pull Ups</button></a>
+            </form>
+            <form>
+              <a href=# id=curl><button class='btn btn-default'>Curl</button></a>
+          </form>
+    </div>
+
   </body>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type=text/javascript>
+          $(function() {
+            $('a#pullups').on('click', function(e) {
+              e.preventDefault()
+              $.getJSON('/background_process_pullups',
+                  function(data) {
+
+              });
+              return false;
+            });
+
+            $('a#curl').on('click', function(e) {
+              e.preventDefault()
+              $.getJSON('/background_process_curls',
+                  function(data) {
+
+              });
+              return false;
+            });
+          });
+  </script>
+
 </html>
