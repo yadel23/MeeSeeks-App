@@ -195,10 +195,7 @@ def gen():
             except:
                 pass
 
-            print("in loop cur state: ", get_workout_state())
-
             if(get_workout_state() == 0):
-                print("curl counter")
                 # Render curl counter
                 # Setup status box
                 cv2.rectangle(image, (0,0), (225,73), (245,117,16), -1)
@@ -218,7 +215,6 @@ def gen():
                             cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255,255,255), 2, cv2.LINE_AA)
                 
             elif(get_workout_state() == 1):
-                print("pullup counter")
                 # Render pullup counter
                 # Setup status box
                 cv2.rectangle(image, (0,0), (225,73), (0,117,16), -1)
