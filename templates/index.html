@@ -1,4 +1,4 @@
-<html>
+<!-- <!-- <html>
   <head>
     <title>Cam View </title>
   </head>
@@ -7,7 +7,6 @@
     <img src="{{ url_for('video_feed') }}">
 
     <div class='container'>
-        <!-- <h3>Test</h3> -->
             <form>
                 <a href=# id=pullups><button class='btn btn-default'>Pull Ups</button></a>
             </form>
@@ -42,3 +41,121 @@
   </script>
 
 </html>
+ -->
+
+
+
+<!-- 
+/*
+ *	This content is generated from the PSD File Info.
+ *	(Alt+Shift+Ctrl+I).
+ *
+ *	@desc 		
+ *	@file 		home
+ *	@date 		Tuesday 07th of February 2023 02:56:10 AM
+ *	@title 		Page 1
+ *	@author 	
+ *	@keywords 	
+ *	@generator 	Export Kit v1.3.figma
+ *
+*/
+ -->
+ <!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
+   <head>
+     <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+     <title>home</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="" >
+     <link rel="StyleSheet" href="static\css\home.css" />
+     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+     <!-- Add your custom HEAD content here -->
+ 
+   </head>
+   <body>
+     <div id="content-container" >
+       <div id="page_home_ek1"  >
+         <div id="_bg__home_ek2"  ></div>
+         <div id="header_title"  ></div>
+         <div id="meeseeks_app" >
+           Meeseeks App
+         </div>
+
+
+         <!-- <div class='container'>
+                 <form>
+                     <a href=# id=pullups><button class='btn btn-default'>Pull Ups</button></a>
+                 </form>
+                 <form>
+                   <a href=# id=curl><button class='btn btn-default'>Curl</button></a>
+               </form>
+         </div> -->
+ 
+         <!-- <div id="group_1"  > -->
+           <!-- <div id="welcome_box"  > -->
+            <div id="video_feed_container">
+            <img src="{{ url_for('video_feed') }}" width="740" height="460">
+
+            <div class='container'>
+              <form>
+                  <a href=# id=pullups><button class='btn pullupBtn'>Pull Ups</button></a>
+              </form>
+
+              <form>
+                <a href=# id=curl><button class='btn curlBtn'>Curl</button></a>
+              </form>
+
+            </div>
+
+            </div>
+           <!-- </div> -->
+           <!-- <div id="welcome" >
+             welcome:
+           </div>
+           <div id="__user_" >
+             username
+           </div> -->
+ 
+         <!-- </div> -->
+         <!-- <img src="Images/personal_button.png" id="personal_button" onclick="window.location.href='userProfile.html';"/>
+         <img src="Images/settings_button.png" id="__settings_button" onclick="window.location.href='Settings.html';"/> -->
+       <div id="record_link">
+         <!-- <img src="Images/record_button.png" id="record_button" onclick="window.location.href='../templates/recordingScreen.html';"/> -->
+         <button id="changePageBtn" class="float-left submit-button" >Home</button>
+
+         <script type="text/javascript">
+            document.getElementById("changePageBtn").onclick = function () {
+              window.location.href = "recordingScreen";
+            };
+         </script>
+
+      </div>
+ 
+       </div>
+     </div>
+   </body>
+
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script type=text/javascript>
+           $(function() {
+             $('a#pullups').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_pullups',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+ 
+             $('a#curl').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_curls',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+           });
+   </script>
+
+ </html>
