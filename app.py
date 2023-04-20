@@ -10,6 +10,7 @@ from plotting import golfSwing
 import time
 from threading import Thread
 import subprocess
+from waitress import serve
 
 
 cap = cv2.VideoCapture(0)
@@ -522,9 +523,9 @@ def gen():
                 # dfz.to_json('mocap_z.json')
 
                 # time.sleep(10)
-                # golfSwing()
-                main()
-                print("temp")
+                golfSwing()
+                # main()
+                # print("temp")
                 # print(subprocess.run(["plotting.py", "arguments"], shell=True))
 
 
@@ -656,7 +657,9 @@ def main():
     # else:
     #     golfSwing()
 
-    app.run(debug=False, host='0.0.0.0')
+    # app.run(debug=False, host='0.0.0.0')
+    serve(app, host='0.0.0.0', port=5000, threads=4)
+    # app.run()
 
     # thread = Thread(target = app.run())
     # thread.start()
