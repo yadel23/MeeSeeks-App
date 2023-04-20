@@ -1,65 +1,3 @@
-<!-- <!-- <html>
-  <head>
-    <title>Cam View </title>
-  </head>
-  <body>
-    <h1>Cam page</h1>
-    <img src="{{ url_for('video_feed') }}">
-
-    <div class='container'>
-            <form>
-                <a href=# id=pullups><button class='btn btn-default'>Pull Ups</button></a>
-            </form>
-            <form>
-              <a href=# id=curl><button class='btn btn-default'>Curl</button></a>
-          </form>
-    </div>
-
-  </body>
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type=text/javascript>
-          $(function() {
-            $('a#pullups').on('click', function(e) {
-              e.preventDefault()
-              $.getJSON('/background_process_pullups',
-                  function(data) {
-
-              });
-              return false;
-            });
-
-            $('a#curl').on('click', function(e) {
-              e.preventDefault()
-              $.getJSON('/background_process_curls',
-                  function(data) {
-
-              });
-              return false;
-            });
-          });
-  </script>
-
-</html>
- -->
-
-
-
-<!-- 
-/*
- *	This content is generated from the PSD File Info.
- *	(Alt+Shift+Ctrl+I).
- *
- *	@desc 		
- *	@file 		home
- *	@date 		Tuesday 07th of February 2023 02:56:10 AM
- *	@title 		Page 1
- *	@author 	
- *	@keywords 	
- *	@generator 	Export Kit v1.3.figma
- *
-*/
- -->
  <!DOCTYPE html>
  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
    <head>
@@ -70,6 +8,18 @@
      <link rel="StyleSheet" href="static\css\home.css" />
      <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
      <!-- Add your custom HEAD content here -->
+
+    <script>
+        window.onload = function() {
+          var body = document.querySelector('body');
+          body.style.height = window.innerHeight + 'px';
+        }
+
+        window.onresize = function() {
+          var body = document.querySelector('body');
+          body.style.height = window.innerHeight + 'px';
+        }
+    </script>
  
    </head>
    <body>
@@ -82,17 +32,6 @@
          </div>
 
 
-         <!-- <div class='container'>
-                 <form>
-                     <a href=# id=pullups><button class='btn btn-default'>Pull Ups</button></a>
-                 </form>
-                 <form>
-                   <a href=# id=curl><button class='btn btn-default'>Curl</button></a>
-               </form>
-         </div> -->
- 
-         <!-- <div id="group_1"  > -->
-           <!-- <div id="welcome_box"  > -->
             <div id="video_feed_container">
             <img src="{{ url_for('video_feed') }}" width="740" height="460">
 
@@ -102,32 +41,40 @@
               </form>
 
               <form>
-                <a href=# id=curl><button class='btn curlBtn'>Curl</button></a>
+                <a href=# id=leftCurl><button class='btn leftCurlBtn'>Left Curl</button></a>
+              </form>
+
+              <form>
+                <a href=# id=rightCurl><button class='btn rightCurlBtn'>Right Curl</button></a>
+              </form>
+              
+              <form>
+                <a href=# id=squat><button class='btn squatBtn'>Squat</button></a>
+              </form>
+
+              <form>
+                <a href=# id=lateral><button class='btn lateralBtn'>Lateral Raise</button></a>
+              </form>
+
+              <form>
+                <a href=# id=leg><button class='btn legBtn'>Laying Leg Raise</button></a>
               </form>
 
             </div>
 
             </div>
-           <!-- </div> -->
-           <!-- <div id="welcome" >
-             welcome:
-           </div>
-           <div id="__user_" >
-             username
-           </div> -->
- 
-         <!-- </div> -->
-         <!-- <img src="Images/personal_button.png" id="personal_button" onclick="window.location.href='userProfile.html';"/>
-         <img src="Images/settings_button.png" id="__settings_button" onclick="window.location.href='Settings.html';"/> -->
-       <div id="record_link">
-         <!-- <img src="Images/record_button.png" id="record_button" onclick="window.location.href='../templates/recordingScreen.html';"/> -->
-         <button id="changePageBtn" class="float-left submit-button" >Home</button>
 
-         <script type="text/javascript">
+       <div id="record_link">
+         <a href=# id=golf><button class="btn golf" >Record Golf Swing</button></a>
+
+         <a href=# id=golfSave><button class="btn golfSave" >Save/view Golf Swing</button></a>
+
+
+         <!-- <script type="text/javascript">
             document.getElementById("changePageBtn").onclick = function () {
               window.location.href = "recordingScreen";
             };
-         </script>
+         </script> -->
 
       </div>
  
@@ -147,15 +94,74 @@
                return false;
              });
  
-             $('a#curl').on('click', function(e) {
+             $('a#leftCurl').on('click', function(e) {
                e.preventDefault()
-               $.getJSON('/background_process_curls',
+               $.getJSON('/background_process_leftCurls',
                    function(data) {
  
                });
                return false;
              });
+
+             $('a#rightCurl').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_rightCurls',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+
+             $('a#squat').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_squat',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+
+             $('a#lateral').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_lateral_raise',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+
+             $('a#leg').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_leg_raise',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+
+
+             $('a#golf').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_golf',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+
+             $('a#golfSave').on('click', function(e) {
+               e.preventDefault()
+               $.getJSON('/background_process_golfSave',
+                   function(data) {
+ 
+               });
+               return false;
+             });
+
+
            });
+
    </script>
+
 
  </html>

@@ -102,7 +102,7 @@ div { position: absolute; }
 	margin: 4px 2px;
 	transition-duration: 0.4s;
 	cursor: pointer;
-  }
+}
 
 
 .pullupBtn{
@@ -110,23 +110,93 @@ div { position: absolute; }
 	color: black; 
 	border: 2px solid #4CAF50;
 }
-	  
+
 .pullupBtn:hover {
 	background-color: #4CAF50;
 	color: white;
 }
 
 
-.curlBtn {
+.leftCurlBtn {
 	background-color: white; 
 	color: black; 
 	border: 2px solid #008CBA;
-  }
-  
-.curlBtn:hover {
+}
+
+.leftCurlBtn:hover {
 	background-color: #008CBA;
 	color: white;
 }
+
+.rightCurlBtn {
+	background-color: white; 
+	color: black; 
+	border: 2px solid #008CBA;
+}
+
+.rightCurlBtn:hover {
+	background-color: #008CBA;
+	color: white;
+}
+
+
+.squatBtn {
+	background-color: white; 
+	color: black; 
+	border: 2px solid #008CBA;
+}
+
+.squatBtn:hover {
+	background-color: #008CBA;
+	color: white;
+}
+
+.lateralBtn {
+	background-color: white; 
+	color: black; 
+	border: 2px solid #008CBA;
+}
+
+.lateralBtn:hover {
+	background-color: #008CBA;
+	color: white;
+}
+
+.legBtn {
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+
+.legBtn:hover {
+	background-color: #008CBA;
+	color: white;
+}
+
+
+.golf {
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+
+.golf:hover {
+	background-color: #008CBA;
+	color: white;
+}
+
+
+.golfSave {
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+
+.golfSave:hover {
+	background-color: #008CBA;
+	color: white;
+}
+
 
 
 #record_link {
@@ -135,6 +205,25 @@ div { position: absolute; }
 	width: 282px;
 	height: 282px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* #group_1 {

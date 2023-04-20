@@ -199,12 +199,17 @@ class graph_animation:
 
 
 
-    
-ga = graph_animation('mocap_x.json', 'mocap_y.json', 'mocap_z.json', 'swing1x.json', 'swing1y.json','swing1z.json')
+
+def golfSwing():
+    print("in golf swing")
+    ga = graph_animation('mocap_x.json', 'mocap_y.json', 'mocap_z.json', 'swing1x.json', 'swing1y.json','swing1z.json')
+    plt.show()
+
+# golfSwing()
 
 
 # ga2 = graph_animation('swing1x.json', 'swing1y.json', 'swing1z.json')
-plt.show()
+# plt.show()
 
 
 # def fig_to_base64(fig):
