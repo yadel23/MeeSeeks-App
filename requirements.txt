@@ -7,6 +7,7 @@ cycler==0.11.0
 Flask==2.2.3
 flatbuffers==23.3.3
 fonttools
+gunicorn
 itsdangerous
 Jinja2
 kiwisolver
