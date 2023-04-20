@@ -9,7 +9,7 @@ from flask import Flask, render_template, Response
 from plotting import golfSwing
 import time
 from threading import Thread
-from gevent.pywsgi import WSGIServer
+import subprocess
 
 
 cap = cv2.VideoCapture(0)
@@ -522,8 +522,10 @@ def gen():
                 # dfz.to_json('mocap_z.json')
 
                 # time.sleep(10)
-
-                golfSwing()
+                # golfSwing()
+                main()
+                print("temp")
+                # print(subprocess.run(["plotting.py", "arguments"], shell=True))
 
 
 
@@ -649,11 +651,12 @@ def workout_text(image, reps, stage, type):
 
 
 def main():
-    # app.run()
-    http_server = WSGIServer(('', 5000), app)
-    http_server.serve_forever()
-    print("testing")
-    golfSwing()
+    # if(get_workout_state() != "golfSave"):
+    #     app.run()
+    # else:
+    #     golfSwing()
+
+    app.run(debug=False, host='0.0.0.0')
 
     # thread = Thread(target = app.run())
     # thread.start()
