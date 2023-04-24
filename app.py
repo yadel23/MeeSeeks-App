@@ -1,7 +1,7 @@
 from pkg_resources import working_set
+import os
 import mediapipe as mp
 import cv2
-import os
 import numpy as np
 import pandas as pd
 import time
@@ -652,6 +652,7 @@ def workout_text(image, reps, stage, type):
 
 
 def main():
+
     # if(get_workout_state() != "golfSave"):
     #     app.run()
     # else:
