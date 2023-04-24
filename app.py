@@ -119,7 +119,7 @@ def gen():
     ## Setup mediapipe instance
     #Pose model, higher the number better the tracking
     with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose: 
-        video = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
+        # video = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
 
         # video = cv2.VideoWriter('webcamRecording.avi', fourcc, 25.0, (640, 480))
         # out = cv2.VideoWriter('output.avi',fourcc, 20.0,(int(cap.get(3)),int(cap.get(4))))
@@ -131,8 +131,8 @@ def gen():
     
 
             #if webcam is working write to videowriter
-            if ret:
-                video.write(frame)
+            # if ret:
+            #     video.write(frame)
 
             # Recolor image to RGB from BGR for mediapipe
             image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -148,381 +148,381 @@ def gen():
 
             #default text top left box
             # Setup status box
-            cv2.rectangle(image, (0,0), (225,73), (300,117,16), -1)
-            cv2.putText(image, 'REPS', (6,12), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
-            cv2.putText(image, 'STAGE', (65,12), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            # cv2.rectangle(image, (0,0), (225,73), (300,117,16), -1)
+            # cv2.putText(image, 'REPS', (6,12), 
+            #             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            # cv2.putText(image, 'STAGE', (65,12), 
+            #             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
 
             # Extract landmarks
-            try:
-                landmarks = results.pose_landmarks.landmark
+#             try:
+#                 landmarks = results.pose_landmarks.landmark
 
-#**********************************************************************************************************************************************
+# #**********************************************************************************************************************************************
                 
-                #coordinates for Left curl
-                left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
-                left_elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
-                left_wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+#                 #coordinates for Left curl
+#                 left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+#                 left_elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+#                 left_wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
 
-                # Calculate left wrist_angle
-                left_wrist_angle = calculate_angle(left_shoulder, left_elbow, left_wrist)
+#                 # Calculate left wrist_angle
+#                 left_wrist_angle = calculate_angle(left_shoulder, left_elbow, left_wrist)
                 
-                # left Curl counter logic
-                if left_wrist_angle > 160:
-                    left_curl_stage = "down"
-                if left_wrist_angle < 30 and left_curl_stage =='down':
-                    left_curl_stage="up"
-                    left_curl_counter +=1
-                    print(left_curl_counter)
+#                 # left Curl counter logic
+#                 if left_wrist_angle > 160:
+#                     left_curl_stage = "down"
+#                 if left_wrist_angle < 30 and left_curl_stage =='down':
+#                     left_curl_stage="up"
+#                     left_curl_counter +=1
+#                     print(left_curl_counter)
 
-#**********************************************************************************************************************************************
+# #**********************************************************************************************************************************************
 
 
-                right_shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
-                right_elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
-                right_wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+#                 right_shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+#                 right_elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+#                 right_wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
 
-                # Calculate right wrist_angle
-                right_wrist_angle = calculate_angle(right_shoulder, right_elbow, right_wrist)
+#                 # Calculate right wrist_angle
+#                 right_wrist_angle = calculate_angle(right_shoulder, right_elbow, right_wrist)
                 
-                # right Curl counter logic
-                if right_wrist_angle > 160:
-                    right_curl_stage = "down"
-                if right_wrist_angle < 30 and right_curl_stage =='down':
-                    right_curl_stage="up"
-                    right_curl_counter +=1
-                    print(right_curl_counter)
+#                 # right Curl counter logic
+#                 if right_wrist_angle > 160:
+#                     right_curl_stage = "down"
+#                 if right_wrist_angle < 30 and right_curl_stage =='down':
+#                     right_curl_stage="up"
+#                     right_curl_counter +=1
+#                     print(right_curl_counter)
 
-#*********************************************************************************************************************************************
+# #*********************************************************************************************************************************************
 
-                #coordinates for pullups
-                left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
-                left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
-                left_elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+#                 #coordinates for pullups
+#                 left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+#                 left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+#                 left_elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
 
-                # Calculate shoulder_angle
-                shoulder_angle = calculate_angle(left_hip, left_shoulder, left_elbow)
+#                 # Calculate shoulder_angle
+#                 shoulder_angle = calculate_angle(left_hip, left_shoulder, left_elbow)
 
-                # pullup counter logic
-                if shoulder_angle > 90:
-                    pullup_stage = "down"
-                if shoulder_angle < 50 and pullup_stage == "down":
-                    pullup_stage = "up"
-                    pullup_counter += 1
-                    print(pullup_counter)
+#                 # pullup counter logic
+#                 if shoulder_angle > 90:
+#                     pullup_stage = "down"
+#                 if shoulder_angle < 50 and pullup_stage == "down":
+#                     pullup_stage = "up"
+#                     pullup_counter += 1
+#                     print(pullup_counter)
 
-#**********************************************************************************************************************************************
+# #**********************************************************************************************************************************************
 
-                #coordinates for squats
-                left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
-                left_knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
-                left_ankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
+#                 #coordinates for squats
+#                 left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+#                 left_knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+#                 left_ankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
 
-                # Calculate knee_angle
-                knee_angle = calculate_angle(left_hip, left_knee, left_ankle)
+#                 # Calculate knee_angle
+#                 knee_angle = calculate_angle(left_hip, left_knee, left_ankle)
                 
-                # squat counter logic
-                if knee_angle >= 150:
-                    squat_stage = "up"
-                if knee_angle <= 90 and squat_stage == "up":
-                    squat_stage = "down"
-                    squat_counter += 1
+#                 # squat counter logic
+#                 if knee_angle >= 150:
+#                     squat_stage = "up"
+#                 if knee_angle <= 90 and squat_stage == "up":
+#                     squat_stage = "down"
+#                     squat_counter += 1
 
 
-#**********************************************************************************************************************************************
-                ##Lateral workout left side
-                # Calculate lateral_angle
-                lateral_angle = calculate_angle(left_hip, left_shoulder, left_elbow)
+# #**********************************************************************************************************************************************
+#                 ##Lateral workout left side
+#                 # Calculate lateral_angle
+#                 lateral_angle = calculate_angle(left_hip, left_shoulder, left_elbow)
                 
-                # squat counter logic
-                if lateral_angle >= 75:
-                    lateral_raise_stage = "up"
-                if lateral_angle <= 15 and lateral_raise_stage == "up":
-                    lateral_raise_stage = "down"
-                    lateral_raise_counter += 1
+#                 # squat counter logic
+#                 if lateral_angle >= 75:
+#                     lateral_raise_stage = "up"
+#                 if lateral_angle <= 15 and lateral_raise_stage == "up":
+#                     lateral_raise_stage = "down"
+#                     lateral_raise_counter += 1
 
 
-#**********************************************************************************************************************************************
-                ##leg raises workout left side
-                #coordinates for leg raises
-                leg_left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
-                leg_left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
-                leg_left_knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+# #**********************************************************************************************************************************************
+#                 ##leg raises workout left side
+#                 #coordinates for leg raises
+#                 leg_left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+#                 leg_left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+#                 leg_left_knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
 
-                # Calculate hip_angle
-                leg_raise_angle = calculate_angle(leg_left_shoulder, leg_left_hip, leg_left_knee)
+#                 # Calculate hip_angle
+#                 leg_raise_angle = calculate_angle(leg_left_shoulder, leg_left_hip, leg_left_knee)
                 
-                # squat counter logic
-                if leg_raise_angle >= 150:
-                    laying_leg_raise_stage = "up"
-                if leg_raise_angle <= 90 and laying_leg_raise_stage == "up":
-                    squat_stage = "down"
-                    laying_leg_raise_counter += 1
+#                 # squat counter logic
+#                 if leg_raise_angle >= 150:
+#                     laying_leg_raise_stage = "up"
+#                 if leg_raise_angle <= 90 and laying_leg_raise_stage == "up":
+#                     squat_stage = "down"
+#                     laying_leg_raise_counter += 1
 
 
-#**********************************************************************************************************************************************
-#**********************************************************************************************************************************************
+# #**********************************************************************************************************************************************
+# #**********************************************************************************************************************************************
 
-                #left curl workout
-                if(get_workout_state() == 1):
+#                 #left curl workout
+#                 if(get_workout_state() == 1):
                 
-                    ##reset other workouts
-                    # Right Curl counter variables
-                    right_curl_counter = 0 
-                    right_curl_stage = None
+#                     ##reset other workouts
+#                     # Right Curl counter variables
+#                     right_curl_counter = 0 
+#                     right_curl_stage = None
 
-                    # pullup counter variables
-                    pullup_counter = 0 
-                    pullup_stage = None
+#                     # pullup counter variables
+#                     pullup_counter = 0 
+#                     pullup_stage = None
 
-                    # squat counter variables
-                    squat_counter = 0 
-                    squat_stage = None
+#                     # squat counter variables
+#                     squat_counter = 0 
+#                     squat_stage = None
 
-                    # Lateral Raise variables
-                    lateral_raise_counter = 0
-                    lateral_raise_stage = None
+#                     # Lateral Raise variables
+#                     lateral_raise_counter = 0
+#                     lateral_raise_stage = None
 
-                    # Lateral Raise variables
-                    laying_leg_raise_counter = 0
-                    laying_leg_raise_stage = None
+#                     # Lateral Raise variables
+#                     laying_leg_raise_counter = 0
+#                     laying_leg_raise_stage = None
 
-                    # Visualize angle for left elbow
-                    cv2.putText(image, str(round(left_wrist_angle, 4)), 
-                                tuple(np.multiply(left_elbow, [640, 480]).astype(int)), 
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+#                     # Visualize angle for left elbow
+#                     cv2.putText(image, str(round(left_wrist_angle, 4)), 
+#                                 tuple(np.multiply(left_elbow, [640, 480]).astype(int)), 
+#                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
                     
-                    workout_text(image, left_curl_counter, left_curl_stage, 'Left Curl')
-
-                    
-    #**********************************************************************************************************************************************
-
-                #pullup workout
-                elif(get_workout_state() == 0):
-
-                    #Reset other workouts
-                    # Left Curl counter variables
-                    left_curl_counter = 0 
-                    left_curl_stage = None
-
-                    # Left Curl counter variables
-                    right_curl_counter = 0 
-                    right_curl_stage = None
-
-                    # squat counter variables
-                    squat_counter = 0 
-                    squat_stage = None
-
-                    # Lateral Raise variables
-                    lateral_raise_counter = 0
-                    lateral_raise_stage = None
-
-                    # Lateral Raise variables
-                    laying_leg_raise_counter = 0
-                    laying_leg_raise_stage = None
-
-                    # Visualize angle for left shoulder
-                    cv2.putText(image, str(round(shoulder_angle, 4)), 
-                            tuple(np.multiply(left_shoulder, [640, 480]).astype(int)), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-
-                    workout_text(image, pullup_counter, pullup_stage, 'Pullup')
-
-
-    #**********************************************************************************************************************************************
-                #Right curl workout
-                elif(get_workout_state() == 2):
-
-                    #Reset other workouts
-                    # Left Curl counter variables
-                    left_curl_counter = 0 
-                    left_curl_stage = None
-
-                    # pullup counter variables
-                    pullup_counter = 0 
-                    pullup_stage = None
-
-                    # squat counter variables
-                    squat_counter = 0 
-                    squat_stage = None
-
-                    # Lateral Raise variables
-                    lateral_raise_counter = 0
-                    lateral_raise_stage = None
-
-                    # Lateral Raise variables
-                    laying_leg_raise_counter = 0
-                    laying_leg_raise_stage = None
-
-                    # Visualize angle for right elbow
-                    cv2.putText(image, str(round(right_wrist_angle, 4)), 
-                                tuple(np.multiply(right_elbow, [640, 480]).astype(int)), 
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-                    
-                    workout_text(image, right_curl_counter, right_curl_stage, 'Right Curl')
+#                     workout_text(image, left_curl_counter, left_curl_stage, 'Left Curl')
 
                     
-    #**********************************************************************************************************************************************
-                #squat left side
-                elif(get_workout_state() == 3):
+#     #**********************************************************************************************************************************************
 
-                    #Reset other workouts
-                    # Left Curl counter variables
-                    left_curl_counter = 0 
-                    left_curl_stage = None
+#                 #pullup workout
+#                 elif(get_workout_state() == 0):
 
-                    # Left Curl counter variables
-                    right_curl_counter = 0 
-                    right_curl_stage = None
+#                     #Reset other workouts
+#                     # Left Curl counter variables
+#                     left_curl_counter = 0 
+#                     left_curl_stage = None
 
-                    # pullup counter variables
-                    pullup_counter = 0 
-                    pullup_stage = None
+#                     # Left Curl counter variables
+#                     right_curl_counter = 0 
+#                     right_curl_stage = None
 
-                    # Lateral Raise variables
-                    lateral_raise_counter = 0
-                    lateral_raise_stage = None
+#                     # squat counter variables
+#                     squat_counter = 0 
+#                     squat_stage = None
 
-                    # Lateral Raise variables
-                    laying_leg_raise_counter = 0
-                    laying_leg_raise_stage = None
+#                     # Lateral Raise variables
+#                     lateral_raise_counter = 0
+#                     lateral_raise_stage = None
 
-                    # Visualize angle for left hip
-                    cv2.putText(image, str(round(knee_angle, 4)), 
-                                tuple(np.multiply(left_hip, [640, 480]).astype(int)), 
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+#                     # Lateral Raise variables
+#                     laying_leg_raise_counter = 0
+#                     laying_leg_raise_stage = None
 
-                    workout_text(image, squat_counter, squat_stage, 'Squat')
+#                     # Visualize angle for left shoulder
+#                     cv2.putText(image, str(round(shoulder_angle, 4)), 
+#                             tuple(np.multiply(left_shoulder, [640, 480]).astype(int)), 
+#                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+#                     workout_text(image, pullup_counter, pullup_stage, 'Pullup')
 
 
+#     #**********************************************************************************************************************************************
+#                 #Right curl workout
+#                 elif(get_workout_state() == 2):
+
+#                     #Reset other workouts
+#                     # Left Curl counter variables
+#                     left_curl_counter = 0 
+#                     left_curl_stage = None
+
+#                     # pullup counter variables
+#                     pullup_counter = 0 
+#                     pullup_stage = None
+
+#                     # squat counter variables
+#                     squat_counter = 0 
+#                     squat_stage = None
+
+#                     # Lateral Raise variables
+#                     lateral_raise_counter = 0
+#                     lateral_raise_stage = None
+
+#                     # Lateral Raise variables
+#                     laying_leg_raise_counter = 0
+#                     laying_leg_raise_stage = None
+
+#                     # Visualize angle for right elbow
+#                     cv2.putText(image, str(round(right_wrist_angle, 4)), 
+#                                 tuple(np.multiply(right_elbow, [640, 480]).astype(int)), 
+#                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+                    
+#                     workout_text(image, right_curl_counter, right_curl_stage, 'Right Curl')
+
+                    
+#     #**********************************************************************************************************************************************
+#                 #squat left side
+#                 elif(get_workout_state() == 3):
+
+#                     #Reset other workouts
+#                     # Left Curl counter variables
+#                     left_curl_counter = 0 
+#                     left_curl_stage = None
+
+#                     # Left Curl counter variables
+#                     right_curl_counter = 0 
+#                     right_curl_stage = None
+
+#                     # pullup counter variables
+#                     pullup_counter = 0 
+#                     pullup_stage = None
+
+#                     # Lateral Raise variables
+#                     lateral_raise_counter = 0
+#                     lateral_raise_stage = None
+
+#                     # Lateral Raise variables
+#                     laying_leg_raise_counter = 0
+#                     laying_leg_raise_stage = None
+
+#                     # Visualize angle for left hip
+#                     cv2.putText(image, str(round(knee_angle, 4)), 
+#                                 tuple(np.multiply(left_hip, [640, 480]).astype(int)), 
+#                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+#                     workout_text(image, squat_counter, squat_stage, 'Squat')
+
+
+
+# #**********************************************************************************************************************************************
+
+#                 #Lateral Raise
+#                 elif(get_workout_state() == 4):
+
+#                     #Reset other workouts
+#                     # Left Curl counter variables
+#                     left_curl_counter = 0 
+#                     left_curl_stage = None
+
+#                     # Left Curl counter variables
+#                     right_curl_counter = 0 
+#                     right_curl_stage = None
+
+#                     # pullup counter variables
+#                     pullup_counter = 0 
+#                     pullup_stage = None
+
+#                     # squat counter variables
+#                     squat_counter = 0 
+#                     squat_stage = None
+
+#                     # Lateral Raise variables
+#                     laying_leg_raise_counter = 0
+#                     laying_leg_raise_stage = None
+
+#                     # Visualize angle for left shoulder
+#                     cv2.putText(image, str(round(shoulder_angle, 4)), 
+#                             tuple(np.multiply(left_shoulder, [640, 480]).astype(int)), 
+#                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+#                     workout_text(image, lateral_raise_counter, lateral_raise_stage, 'Lat Raise')
+
+
+# #**********************************************************************************************************************************************
+
+#                 #Leg Raise
+#                 elif(get_workout_state() == 5):
+
+#                     #Reset other workouts
+#                     # Left Curl counter variables
+#                     left_curl_counter = 0 
+#                     left_curl_stage = None
+
+#                     # Left Curl counter variables
+#                     right_curl_counter = 0 
+#                     right_curl_stage = None
+
+#                     # pullup counter variables
+#                     pullup_counter = 0 
+#                     pullup_stage = None
+
+#                     # squat counter variables
+#                     squat_counter = 0 
+#                     squat_stage = None
+
+#                     # Lateral Raise variables
+#                     lateral_raise_counter = 0
+#                     lateral_raise_stage = None
+
+#                     # Visualize angle for left shoulder
+#                     cv2.putText(image, str(round(leg_raise_angle, 4)), 
+#                             tuple(np.multiply(leg_left_hip, [640, 480]).astype(int)), 
+#                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
+
+#                     workout_text(image, laying_leg_raise_counter, laying_leg_raise_stage, 'Leg Raise')
+
+
+# #**********************************************************************************************************************************************
+
+#             except:
+#                 pass
 
 #**********************************************************************************************************************************************
-
-                #Lateral Raise
-                elif(get_workout_state() == 4):
-
-                    #Reset other workouts
-                    # Left Curl counter variables
-                    left_curl_counter = 0 
-                    left_curl_stage = None
-
-                    # Left Curl counter variables
-                    right_curl_counter = 0 
-                    right_curl_stage = None
-
-                    # pullup counter variables
-                    pullup_counter = 0 
-                    pullup_stage = None
-
-                    # squat counter variables
-                    squat_counter = 0 
-                    squat_stage = None
-
-                    # Lateral Raise variables
-                    laying_leg_raise_counter = 0
-                    laying_leg_raise_stage = None
-
-                    # Visualize angle for left shoulder
-                    cv2.putText(image, str(round(shoulder_angle, 4)), 
-                            tuple(np.multiply(left_shoulder, [640, 480]).astype(int)), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-
-                    workout_text(image, lateral_raise_counter, lateral_raise_stage, 'Lat Raise')
-
-
 #**********************************************************************************************************************************************
 
-                #Leg Raise
-                elif(get_workout_state() == 5):
-
-                    #Reset other workouts
-                    # Left Curl counter variables
-                    left_curl_counter = 0 
-                    left_curl_stage = None
-
-                    # Left Curl counter variables
-                    right_curl_counter = 0 
-                    right_curl_stage = None
-
-                    # pullup counter variables
-                    pullup_counter = 0 
-                    pullup_stage = None
-
-                    # squat counter variables
-                    squat_counter = 0 
-                    squat_stage = None
-
-                    # Lateral Raise variables
-                    lateral_raise_counter = 0
-                    lateral_raise_stage = None
-
-                    # Visualize angle for left shoulder
-                    cv2.putText(image, str(round(leg_raise_angle, 4)), 
-                            tuple(np.multiply(leg_left_hip, [640, 480]).astype(int)), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
-
-                    workout_text(image, laying_leg_raise_counter, laying_leg_raise_stage, 'Leg Raise')
-
-
-#**********************************************************************************************************************************************
-
-            except:
-                pass
-
-#**********************************************************************************************************************************************
-#**********************************************************************************************************************************************
-
-            # Render detections
-            #passing in: image, landmark_list, pose connections, landmark points drawings, connection lines drawings
-            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
-                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
-                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2))                                 
+            # # Render detections
+            # #passing in: image, landmark_list, pose connections, landmark points drawings, connection lines drawings
+            # mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+            #                         mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+            #                         mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2))                                 
 
             ret, jpeg = cv2.imencode('.jpg', image)
 
 
-            # iteration = 0
+            # # iteration = 0
 
-            # dfx = pd.DataFrame(columns = np.arange(33))
-            # dfy = pd.DataFrame(columns = np.arange(33))
-            # dfz = pd.DataFrame(columns = np.arange(33))
-
-
-            #list for all axis
-            x_list = []
-            y_list = []
-            z_list = []
-            vis_list = []
-            for i in range(33):
-                try:
-                    x_list.append(results.pose_landmarks.landmark[i].x)
-                    y_list.append(results.pose_landmarks.landmark[i].y)
-                    z_list.append(results.pose_landmarks.landmark[i].z)
-                    if results.pose_landmarks.landmark[i].visibility >= .80:
-                        vis_list.append(results.pose_landmarks.landmark[i].visibility)
-                except:
-                    x_list.append('NaN')
-                    y_list.append('NaN')
-                    z_list.append('NaN')
-            #does not record until 22 points are at least tracked
-            if(get_workout_state() == "golf"):
-                if len(vis_list) >= 22:
-                    dfx.loc[len(dfx)] = x_list
-                    dfy.loc[len(dfy)] = y_list
-                    dfz.loc[len(dfz)] = z_list
-
-                    print('recording '+ str(iteration))
+            # # dfx = pd.DataFrame(columns = np.arange(33))
+            # # dfy = pd.DataFrame(columns = np.arange(33))
+            # # dfz = pd.DataFrame(columns = np.arange(33))
 
 
-            if(get_workout_state() == "golfSave"):
+            # #list for all axis
+            # x_list = []
+            # y_list = []
+            # z_list = []
+            # vis_list = []
+            # for i in range(33):
+            #     try:
+            #         x_list.append(results.pose_landmarks.landmark[i].x)
+            #         y_list.append(results.pose_landmarks.landmark[i].y)
+            #         z_list.append(results.pose_landmarks.landmark[i].z)
+            #         if results.pose_landmarks.landmark[i].visibility >= .80:
+            #             vis_list.append(results.pose_landmarks.landmark[i].visibility)
+            #     except:
+            #         x_list.append('NaN')
+            #         y_list.append('NaN')
+            #         z_list.append('NaN')
+            # #does not record until 22 points are at least tracked
+            # if(get_workout_state() == "golf"):
+            #     if len(vis_list) >= 22:
+            #         dfx.loc[len(dfx)] = x_list
+            #         dfy.loc[len(dfy)] = y_list
+            #         dfz.loc[len(dfz)] = z_list
+
+            #         print('recording '+ str(iteration))
+
+
+            # if(get_workout_state() == "golfSave"):
                 # print('saved golf swing')
                 # dfx.to_json('mocap_x.json')
                 # dfy.to_json('mocap_y.json')
                 # dfz.to_json('mocap_z.json')
 
                 # time.sleep(10)
-                golfSwing()
+                # golfSwing()
                 # main()
                 # print("temp")
                 # print(subprocess.run(["plotting.py", "arguments"], shell=True))
