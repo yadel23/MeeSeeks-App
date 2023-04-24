@@ -22,7 +22,6 @@ packaging
 pandas
 Pillow
 protobuf
-Python==3.9
 pynput
 pyparsing
 python-dateutil
