@@ -15,7 +15,6 @@ from waitress import serve
 
 cap = cv2.VideoCapture(0)
 
-
 #use to access different solutions for drawing
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
