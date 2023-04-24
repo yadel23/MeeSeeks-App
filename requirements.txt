@@ -21,7 +21,6 @@ opencv-python
 packaging
 pandas
 Pillow
-protobuf
 pynput
 pyparsing
 python-dateutil
