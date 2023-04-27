@@ -13,7 +13,7 @@ import subprocess
 from waitress import serve
 
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 #use to access different solutions for drawing
 mp_drawing = mp.solutions.drawing_utils
