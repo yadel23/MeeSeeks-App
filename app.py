@@ -13,7 +13,7 @@ import subprocess
 from waitress import serve
 
 
-cap = cv2.VideoCapture(1)
+# cap = cv2.VideoCapture(1)
 
 #use to access different solutions for drawing
 mp_drawing = mp.solutions.drawing_utils
@@ -118,16 +118,16 @@ def gen():
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     ## Setup mediapipe instance
     #Pose model, higher the number better the tracking
-    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose: 
+    # with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose: 
         # video = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
 
         # video = cv2.VideoWriter('webcamRecording.avi', fourcc, 25.0, (640, 480))
         # out = cv2.VideoWriter('output.avi',fourcc, 20.0,(int(cap.get(3)),int(cap.get(4))))
 
-        while cap.isOpened():
+        # while cap.isOpened():
             #ret is not used, frame is the image from the webcam
             
-            ret, frame = cap.read()
+            # ret, frame = cap.read()
     
 
             #if webcam is working write to videowriter
@@ -135,15 +135,15 @@ def gen():
             #     video.write(frame)
 
             # Recolor image to RGB from BGR for mediapipe
-            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            image.flags.writeable = False
+            # image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # image.flags.writeable = False
 
-            # Make detection storing it in results
-            results = pose.process(image)
+            # # Make detection storing it in results
+            # results = pose.process(image)
 
-            # Recolor back to BGR from RGB because of opencv
-            image.flags.writeable = True
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            # # Recolor back to BGR from RGB because of opencv
+            # image.flags.writeable = True
+            # image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
 
             #default text top left box
@@ -479,7 +479,7 @@ def gen():
             #                         mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
             #                         mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2))                                 
 
-            ret, jpeg = cv2.imencode('.jpg', image)
+            # ret, jpeg = cv2.imencode('.jpg', image)
 
 
             # # iteration = 0
@@ -529,20 +529,20 @@ def gen():
 
 
 
-            #how to quit from the webcam view, 
-            if cv2.waitKey(10) & 0xFF == ord('q'):
-                #save recordings before closing
-                print('saved')
-                dfx.to_json('mocap_x.json')
-                dfy.to_json('mocap_y.json')
-                dfz.to_json('mocap_z.json')
-                #closes the window and releases the cam       
-                cap.release()
-                cv2.destroyAllWindows()
-                break
-            else: 
-                yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n\r\n') 
+            # #how to quit from the webcam view, 
+            # if cv2.waitKey(10) & 0xFF == ord('q'):
+            #     #save recordings before closing
+            #     print('saved')
+            #     dfx.to_json('mocap_x.json')
+            #     dfy.to_json('mocap_y.json')
+            #     dfz.to_json('mocap_z.json')
+            #     #closes the window and releases the cam       
+            #     cap.release()
+            #     cv2.destroyAllWindows()
+            #     break
+            # else: 
+            #     yield (b'--frame\r\n'
+            #     b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n\r\n') 
 
 #**********************************************************************************************************************************************
 #**********************************************************************************************************************************************
@@ -659,7 +659,7 @@ def main():
 
     # app.run(debug=False, host='0.0.0.0')
     # serve(app, host='127.0.0.1', port=5000, threads=4)
-    serve(app, host='127.0.0.1', threads=4)
+    serve(app, threads=4)
 
     # app.run()
 
